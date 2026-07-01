@@ -5,17 +5,30 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function main() {
-  console.log("🌱 Seeding database...");
+  console.log("🌱 Seeding database with updated school stats & Saturday schedules...");
 
   try {
     // 1. Seed CMS default content
     console.log("CMS Content...");
+    
+    // We truncate or overwrite CMS keys. On conflict do update or just clear and re-insert.
+    // For simplicity, we can delete existing records and insert clean ones.
+    await db.delete(cmsContent);
+    await db.delete(enrollments);
+    await db.delete(attendance);
+    await db.delete(examMarks);
+    await db.delete(resources);
+    await db.delete(studentProgressHistory);
+    await db.delete(users);
+    await db.delete(classes);
+    await db.delete(exams);
+
     await db.insert(cmsContent).values([
       {
         sectionKey: "hero",
         contentData: {
           title: "Nurturing Wisdom & Virtue",
-          subtext: "Susilodaya Dhamma School has guided generations of students in the path of Dhamma, cultivating compassionate hearts and clear minds.",
+          subtext: "For over 20 years, Susilodaya Dhamma School has guided generations of students in the path of the Dhamma, cultivating compassionate hearts and clear minds. Join us every Saturday morning from 8:30 AM to 11:30 AM.",
           buttonText: "Enroll Journey",
           imageUrl: "/assets/coverPage/Cover Photo.jpg",
         },
@@ -24,11 +37,12 @@ async function main() {
         sectionKey: "about_us",
         contentData: {
           title: "Our Heritage & Vision",
-          historyText: "Established with the blessings of the monastic community, Susilodaya Dhamma School stands as a pillar of Buddhist education in the region, conducting weekly lessons in Dhamma, Sutta, Abhidhamma, and traditional history.",
+          historyText: "Established in 2006, Susilodaya Dhamma School stands as a pillar of Buddhist education, conducting weekly lessons in Dhamma, Sutta, and Abhidhamma. Over the past two decades, we have guided more than 2,000 alumni. Today, we continue this noble mission with a dedicated staff of 10 teachers nurturing over 100 active students.",
+          scheduleText: "Weekly lessons are held every Saturday morning from 8:30 AM to 11:30 AM.",
           milestones: [
-            { year: "1998", event: "Dhamma School founded with 45 students." },
-            { year: "2010", event: "First batch of students completed the YMBA Diploma." },
-            { year: "2020", event: "Initiation of digital resource library for remote study." }
+            { year: "2006", event: "Dhamma School founded with 30 students." },
+            { year: "2016", event: "Completed 10 years of service, reaching 1,000 cumulative alumni." },
+            { year: "2026", event: "Celebrating 20 years of Dhamma education with 10 teachers and 100+ active students." }
           ]
         },
       },
@@ -51,7 +65,7 @@ async function main() {
           zoom: 15
         }
       }
-    ]).onConflictDoNothing();
+    ]);
 
     // 2. Seed classes
     console.log("Classes...");
@@ -96,7 +110,7 @@ async function main() {
         parentName: "Sunil Perera",
         parentPhone: "+94779876543"
       }
-    ]).onConflictDoNothing();
+    ]);
 
     // 4. Seed Exams
     console.log("Exams...");
