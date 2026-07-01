@@ -64,6 +64,13 @@ async function main() {
           lng: 79.8612,
           zoom: 15
         }
+      },
+      {
+        sectionKey: "enrollment_setting",
+        contentData: {
+          enrollmentFee: 1000, // in LKR
+          isEnrollmentOpen: false, // will toggle January cycle
+        }
       }
     ]);
 
