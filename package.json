@@ -12,6 +12,7 @@
     "db:seed": "tsx src/lib/db/seed.ts"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.45.4",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
