@@ -9,10 +9,23 @@ export default async function TeacherLayout({
   const profile = await checkRole("teacher");
 
   return (
-    <div className="min-h-screen bg-[#FFF8F0] text-[#1C1C1E] font-sans flex flex-col">
-      <header className="border-b border-[#E6DDD0] px-6 py-4 flex items-center justify-between bg-white shadow-none">
+    <div className="min-h-screen bg-[#FFF8F0] text-[#1C1C1E] font-sans flex flex-col relative">
+      {/* Cinematic Film Grain Texture */}
+      <div className="noise-overlay" />
+
+      <header className="px-6 py-4 flex items-center justify-between shadow-none relative z-20 border-b border-[#E6DDD0]/50 bg-white/45 backdrop-blur-md">
         <div className="flex items-center space-x-3">
-          <span className="text-xl font-normal font-serif text-[#6B1D3A] italic">Susilodaya Teacher</span>
+          <div className="relative w-8 h-8 overflow-hidden flex items-center justify-center bg-white border border-[#E6DDD0]/60 p-0.5">
+            <img
+              src="/assets/logo.png"
+              alt="Susilodaya Logo"
+              className="w-full h-full object-contain mix-blend-multiply"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-normal font-serif text-[#6B1D3A] italic leading-none">Susilodaya Teacher</span>
+            <span className="text-[6.5px] font-bold tracking-[0.1em] text-[#8B5A2B] uppercase mt-1 leading-none">English Medium Dhamma School</span>
+          </div>
         </div>
         <div className="flex items-center space-x-4">
           <span className="text-sm font-medium text-[#1C1C1E]/80">{profile.fullName}</span>
@@ -23,7 +36,7 @@ export default async function TeacherLayout({
           </form>
         </div>
       </header>
-      <main className="flex-1 p-6 max-w-7xl w-full mx-auto">{children}</main>
+      <main className="flex-1 p-6 max-w-7xl w-full mx-auto relative z-10">{children}</main>
     </div>
   );
 }
