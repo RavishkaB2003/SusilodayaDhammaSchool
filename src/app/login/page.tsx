@@ -7,18 +7,24 @@ export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(signIn, null);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FFF8F0] p-4 font-sans selection:bg-[#F0E6D6]">
+    <div className="min-h-screen flex items-center justify-center bg-[#FFF8F0] p-4 font-sans selection:bg-[#F0E6D6] relative">
+      {/* Cinematic Film Grain Texture */}
+      <div className="noise-overlay" />
+      
       <div className="absolute inset-0 bg-[radial-gradient(#F0E6D6_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-30 pointer-events-none"></div>
       
-      <div className="w-full max-w-md bg-white border border-[#E6DDD0] rounded-none shadow-none overflow-hidden relative p-8 md:p-10">
-        <div className="text-center mb-8">
-          <div className="inline-block p-3 rounded-none bg-[#FFF8F0] border border-[#E6DDD0] mb-3">
-            <svg className="w-8 h-8 text-[#6B1D3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
+      <div className="w-full max-w-md bg-white/45 backdrop-blur-md border border-[#E6DDD0]/50 rounded-none shadow-none overflow-hidden relative p-8 md:p-10 z-10">
+        <div className="text-center mb-8 flex flex-col items-center">
+          <div className="inline-block p-1 rounded-none bg-white border border-[#E6DDD0] mb-3 w-16 h-16 overflow-hidden flex items-center justify-center">
+            <img
+              src="/assets/logo.png"
+              alt="Susilodaya Logo"
+              className="w-full h-full object-contain mix-blend-multiply"
+            />
           </div>
-          <h2 className="text-3xl font-normal font-serif text-[#6B1D3A] tracking-tight italic">Susilodaya</h2>
-          <p className="text-[10px] text-[#E8A317] font-bold tracking-widest mt-1.5 uppercase">Portal Login</p>
+          <h2 className="text-3xl font-normal font-serif text-[#6B1D3A] tracking-tight italic leading-none">Susilodaya</h2>
+          <p className="text-[7.5px] font-bold tracking-[0.12em] text-[#8B5A2B] uppercase mt-1 leading-none">English Medium Dhamma School</p>
+          <p className="text-[9px] text-[#6B1D3A] font-bold tracking-widest mt-4 uppercase">Portal Login</p>
         </div>
 
         <form action={formAction} className="space-y-6">
