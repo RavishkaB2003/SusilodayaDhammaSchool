@@ -20,10 +20,10 @@ export default function CollageGallery({ images = [] }: CollageGalleryProps) {
 
   // Map images to unique grid shapes and classes for an asymmetrical mosaic
   const gridClasses = [
-    "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto rounded-3xl overflow-hidden relative border border-[#F0E6D6] shadow-sm cursor-pointer group",
-    "md:col-span-1 md:row-span-2 aspect-[3/4] md:aspect-auto rounded-3xl overflow-hidden relative border border-[#F0E6D6] shadow-sm cursor-pointer group",
-    "md:col-span-1 md:row-span-1 aspect-square rounded-3xl overflow-hidden relative border border-[#F0E6D6] shadow-sm cursor-pointer group",
-    "md:col-span-1 md:row-span-1 aspect-square rounded-3xl overflow-hidden relative border border-[#F0E6D6] shadow-sm cursor-pointer group"
+    "md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto rounded-none overflow-hidden relative border border-[#E6DDD0] shadow-none cursor-pointer group",
+    "md:col-span-1 md:row-span-2 aspect-[3/4] md:aspect-auto rounded-none overflow-hidden relative border border-[#E6DDD0] shadow-none cursor-pointer group",
+    "md:col-span-1 md:row-span-1 aspect-square rounded-none overflow-hidden relative border border-[#E6DDD0] shadow-none cursor-pointer group",
+    "md:col-span-1 md:row-span-1 aspect-square rounded-none overflow-hidden relative border border-[#E6DDD0] shadow-none cursor-pointer group"
   ];
 
   return (
@@ -34,7 +34,7 @@ export default function CollageGallery({ images = [] }: CollageGalleryProps) {
           <div
             key={src + index}
             onClick={() => setSelectedImage(src)}
-            className={`${gridClasses[index] || "rounded-3xl overflow-hidden relative border border-[#F0E6D6] cursor-pointer group"}`}
+            className={`${gridClasses[index] || "rounded-none overflow-hidden relative border border-[#E6DDD0] cursor-pointer group"}`}
           >
             {/* Image Wrapper */}
             <div className="w-full h-full relative overflow-hidden bg-[#F9F5EF]">
@@ -47,7 +47,7 @@ export default function CollageGallery({ images = [] }: CollageGalleryProps) {
                 unoptimized // In case local mock paths are used
               />
               {/* Saffron Gradient Mask Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#7A1F1D]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#6B1D3A]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                 <span className="text-white text-sm font-semibold tracking-wide font-serif">View Full Image</span>
               </div>
 
@@ -80,7 +80,7 @@ export default function CollageGallery({ images = [] }: CollageGalleryProps) {
           {/* Close trigger button */}
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 text-white hover:text-[#E89E5F] transition-colors"
+            className="absolute top-6 right-6 text-white hover:text-[#E8A317] transition-colors"
           >
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

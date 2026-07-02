@@ -28,7 +28,7 @@ async function main() {
         sectionKey: "hero",
         contentData: {
           title: "Nurturing Wisdom & Virtue",
-          subtext: "For over 20 years, Susilodaya Dhamma School has guided generations of students in the path of the Dhamma, cultivating compassionate hearts and clear minds. Join us every Saturday morning from 8:30 AM to 11:30 AM.",
+          subtext: "For over 20 years, Susilodaya English Medium Dhamma School has guided generations of students in the path of the Dhamma, cultivating compassionate hearts and clear minds. Join us every Saturday morning from 8:30 AM to 11:30 AM.",
           buttonText: "Enroll Journey",
           imageUrl: "/assets/coverPage/Cover Photo.jpg",
         },
@@ -37,7 +37,7 @@ async function main() {
         sectionKey: "about_us",
         contentData: {
           title: "Our Heritage & Vision",
-          historyText: "Established in 2006, Susilodaya Dhamma School stands as a pillar of Buddhist education, conducting weekly lessons in Dhamma, Sutta, and Abhidhamma. Over the past two decades, we have guided more than 2,000 alumni. Today, we continue this noble mission with a dedicated staff of 10 teachers nurturing over 100 active students.",
+          historyText: "Established in 2006, Susilodaya English Medium Dhamma School stands as a pillar of Buddhist education, conducting weekly lessons in Dhamma, Sutta, and Abhidhamma. Over the past two decades, we have guided more than 2,000 alumni. Today, we continue this noble mission with a dedicated staff of 10 teachers nurturing over 100 active students.",
           scheduleText: "Weekly lessons are held every Saturday morning from 8:30 AM to 11:30 AM.",
           milestones: [
             { year: "2006", event: "Dhamma School founded with 30 students." },

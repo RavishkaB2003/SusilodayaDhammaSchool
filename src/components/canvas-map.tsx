@@ -206,16 +206,16 @@ export default function CanvasMap() {
   }, []);
 
   return (
-    <div className="relative w-full h-[450px] bg-[#FFF8F0] border border-[#F0E6D6] rounded-2xl overflow-hidden shadow-inner group">
+    <div className="relative w-full h-[450px] bg-[#FFF8F0] border border-[#E6DDD0] rounded-none overflow-hidden shadow-none group">
       {/* Title Overlay Info Box */}
-      <div className="absolute top-4 left-4 z-10 max-w-[280px] bg-white/95 backdrop-blur border border-[#F0E6D6] p-4 rounded-xl shadow-md">
-        <h4 className="text-sm font-bold font-serif text-[#7A1F1D]">Susilodaya Temple Compound</h4>
-        <p className="text-xs text-[#5C4B47] mt-1 leading-relaxed">
+      <div className="absolute top-4 left-4 z-10 max-w-[280px] bg-white/95 backdrop-blur border border-[#E6DDD0] p-4 rounded-none shadow-none">
+        <h4 className="text-sm font-normal font-serif text-[#6B1D3A] italic">Susilodaya Temple Compound</h4>
+        <p className="text-xs text-[#1C1C1E]/80 mt-1 leading-relaxed">
           Drag to explore nearby access roads. Use your mouse wheel to zoom in or out.
         </p>
         <button
           onClick={resetMap}
-          className="mt-3 text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-[#F0E6D6] hover:bg-[#FFF8F0] text-[#8B5A2B] transition-colors"
+          className="mt-3 text-[10px] font-bold tracking-wider uppercase px-3 py-1.5 rounded-none border border-[#E6DDD0] hover:text-[#1C1C1E] text-[#6B1D3A] transition-all btn-wipe"
         >
           Recenter
         </button>

@@ -25,19 +25,28 @@ export default function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#FFF8F0]/80 backdrop-blur-md border-b border-[#E6DDD0] transition-all duration-200">
+    <nav className="sticky top-0 z-50 liquid-glass border-b border-[#E6DDD0]/60 transition-all duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-24">
           
           {/* Logo Section - framed by clean vertical grid line */}
           <div className="flex-shrink-0 flex items-center pr-6 border-r border-[#E6DDD0]/80 h-full">
             <Link href="/" className="flex items-center space-x-3 group">
-              <svg className="w-7 h-7 text-[#7A1F1D] transition-transform duration-500 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 2C11.5 5 8 8.5 5.5 8.5C3 8.5 2 9.5 2 11C2 12.5 3 13.5 5.5 13.5C8 13.5 11.5 17 12 20C12.5 17 16 13.5 18.5 13.5C21 13.5 22 12.5 22 11C22 9.5 21 8.5 18.5 8.5C16 8.5 12.5 5 12 2Z" fill="currentColor" fillOpacity="0.08" />
-              </svg>
-              <span className="font-serif text-3xl font-normal tracking-tight text-[#7A1F1D] italic">
-                Susilodaya
-              </span>
+              <div className="relative w-12 h-12 overflow-hidden flex items-center justify-center">
+                <img
+                  src="/assets/logo.png"
+                  alt="Susilodaya Logo"
+                  className="w-full h-full object-contain mix-blend-multiply"
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl font-normal tracking-tight text-[#6B1D3A] italic leading-none">
+                  Susilodaya
+                </span>
+                <span className="text-[7px] sm:text-[8px] font-bold tracking-[0.1em] text-[#8B5A2B] uppercase mt-1 leading-none">
+                  English Medium Dhamma School
+                </span>
+              </div>
             </Link>
           </div>
 
@@ -47,8 +56,8 @@ export default function Navbar({ user }: NavbarProps) {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-200 hover:text-[#7A1F1D] ${
-                  isActive(link.href) ? "text-[#7A1F1D]" : "text-[#5C4B47]/80"
+                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-200 hover:text-[#6B1D3A] ${
+                  isActive(link.href) ? "text-[#6B1D3A]" : "text-[#1C1C1E]/80"
                 }`}
               >
                 {link.name}
@@ -56,12 +65,12 @@ export default function Navbar({ user }: NavbarProps) {
             ))}
           </div>
 
-          {/* Action CTA Button - styled as a refined pill with diagonal arrow */}
+          {/* Action CTA Button - styled as a refined sharp block with diagonal arrow */}
           <div className="hidden md:flex items-center pl-6 border-l border-[#E6DDD0]/80 h-full">
             {user ? (
               <Link
                 href={`/${user.user_metadata?.role || "student"}`}
-                className="px-6 py-2.5 bg-[#8B5A2B] hover:bg-[#724820] text-white text-[11px] font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 shadow-sm flex items-center space-x-1.5"
+                className="px-6 py-2.5 bg-[#E8A317] hover:text-[#1C1C1E] text-white text-[11px] font-bold tracking-[0.15em] uppercase rounded-none transition-all duration-300 shadow-none border border-[#E8A317] flex items-center space-x-1.5 btn-wipe"
               >
                 <span>Workspace</span>
                 <span className="text-xs">↗</span>
@@ -69,7 +78,7 @@ export default function Navbar({ user }: NavbarProps) {
             ) : (
               <Link
                 href="/login"
-                className="px-6 py-2.5 bg-[#7A1F1D] hover:bg-[#5C1412] text-white text-[11px] font-bold tracking-[0.15em] uppercase rounded-full transition-all duration-300 shadow-sm flex items-center space-x-1.5"
+                className="px-6 py-2.5 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-[0.15em] uppercase rounded-none transition-all duration-300 shadow-none border border-[#6B1D3A] flex items-center space-x-1.5 btn-wipe btn-wipe-maroon"
               >
                 <span>Portal Login</span>
                 <span className="text-xs">↗</span>
@@ -82,7 +91,7 @@ export default function Navbar({ user }: NavbarProps) {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2.5 rounded-xl text-[#5C4B47] hover:text-[#7A1F1D] hover:bg-[#F0E6D6]/40 focus:outline-none transition-all"
+              className="inline-flex items-center justify-center p-2.5 rounded-none text-[#1C1C1E] hover:text-[#6B1D3A] border border-transparent hover:border-[#E6DDD0] focus:outline-none transition-all"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >
@@ -110,10 +119,10 @@ export default function Navbar({ user }: NavbarProps) {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3.5 rounded-xl text-xs font-bold tracking-wider uppercase transition-all ${
+                className={`block px-4 py-3.5 rounded-none text-xs font-bold tracking-wider uppercase transition-all ${
                   isActive(link.href)
-                    ? "bg-[#E6DDD0]/30 text-[#7A1F1D]"
-                    : "text-[#5C4B47] hover:bg-[#E6DDD0]/20 hover:text-[#7A1F1D]"
+                    ? "bg-[#E6DDD0]/30 text-[#6B1D3A]"
+                    : "text-[#1C1C1E] hover:bg-[#E6DDD0]/20 hover:text-[#6B1D3A]"
                 }`}
               >
                 {link.name}
@@ -124,7 +133,7 @@ export default function Navbar({ user }: NavbarProps) {
                 <Link
                   href={`/${user.user_metadata?.role || "student"}`}
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-5 py-3.5 bg-[#8B5A2B] text-white text-xs font-bold tracking-widest uppercase rounded-full transition-all shadow-sm"
+                  className="block w-full text-center px-5 py-3.5 bg-[#E8A317] text-[#1C1C1E] text-xs font-bold tracking-widest uppercase rounded-none transition-all shadow-none"
                 >
                   Workspace ↗
                 </Link>
@@ -132,7 +141,7 @@ export default function Navbar({ user }: NavbarProps) {
                 <Link
                   href="/login"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-5 py-3.5 bg-[#7A1F1D] text-white text-xs font-bold tracking-widest uppercase rounded-full transition-all shadow-sm"
+                  className="block w-full text-center px-5 py-3.5 bg-[#6B1D3A] text-white text-xs font-bold tracking-widest uppercase rounded-none transition-all shadow-none"
                 >
                   Portal Login ↗
                 </Link>

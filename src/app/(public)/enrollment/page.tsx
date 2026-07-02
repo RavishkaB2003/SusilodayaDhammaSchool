@@ -3,7 +3,7 @@ import EnrollmentStepper from "@/components/enrollment-stepper";
 import ScrollReveal from "@/components/scroll-reveal";
 
 export const metadata = {
-  title: "Student Enrollment | Susilodaya Dhamma School",
+  title: "Student Enrollment | Susilodaya English Medium Dhamma School",
   description: "Enroll your child for weekly Buddhist Dhamma classes at Susilodaya Viharaya.",
 };
 
@@ -30,15 +30,15 @@ export default async function EnrollmentPage() {
       {/* Title Header (Hidden during print) */}
       <div className="text-center max-w-xl mx-auto space-y-3 print:hidden">
         <ScrollReveal>
-          <span className="text-[#8B5A2B] font-bold text-xs uppercase tracking-widest bg-[#F0E6D6]/50 px-3 py-1.5 rounded-full">
+          <span className="text-[#6B1D3A] font-bold text-xs uppercase tracking-widest bg-[#F0E6D6]/50 px-3 py-1.5 rounded-none border border-[#E8A317]/20">
             Admission & Pre-Registration
           </span>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
-          <h1 className="text-4xl font-extrabold font-serif text-[#7A1F1D]">Student Pre-Registration</h1>
+          <h1 className="text-4xl font-normal font-serif text-[#6B1D3A] italic">Student Pre-Registration</h1>
         </ScrollReveal>
         <ScrollReveal delay={0.2}>
-          <p className="text-sm text-[#5C4B47] leading-relaxed">
+          <p className="text-sm text-[#1C1C1E] leading-relaxed">
             Register your child online to initiate the enrollment journey. Once submitted, download and print the pre-enrollment voucher to complete the physical payment at the temple office.
           </p>
         </ScrollReveal>

@@ -116,11 +116,11 @@ If no research files are found the agent will:
 
 ---
 
-## 5. Globally Installed Skills
+## 5. Globally & Workspace Installed Skills
 
-The following skills are installed globally in Antigravity and available to all projects:
+The following skills are available to this project:
 
-### ui-ux-pro-max-skill
+### ui-ux-pro-max-skill (Global)
 **Source:** `https://github.com/nextlevelbuilder/ui-ux-pro-max-skill`
 **When to use:**
 - During `/start` Phase 2 — cross-reference project requirements against this skill
@@ -133,6 +133,19 @@ The following skills are installed globally in Antigravity and available to all 
 Use the globally installed ui-ux-pro-max-skill to evaluate the
 design direction for [project type] with [visual style] aesthetic.
 ```
+
+### cinematic-web-design (Workspace-scoped)
+**Location:** `.agents/skills/cinematic-web-design/SKILL.md`
+**When to use:**
+- When building premium, highly immersive websites or landing pages that require a "wow" factor.
+- During `/stitch-design` and `/stitch-update` workflows.
+- To implement scroll-scrubbed video, spotlight cursors, liquid-glass CSS, or sticky card decks.
+
+**How to activate:**
+```
+Use the workspace-scoped cinematic-web-design skill to design/update [screen name] with premium animation and effects.
+```
+
 
 ### Spline Skill
 **Source:** Globally installed Spline skill
@@ -346,6 +359,8 @@ Always through public interfaces — index files, API contracts, service layers.
 - Log issues immediately when found
 - Move issues to resolved immediately when fixed
 - Read UX research files before any UI work
+- **Stitch Rules**: Never submit generic prompts to Google Stitch. Always structure specifications using the **Stitch Prompt Blueprint** (from `cinematic-web-design`). Always map functional states/handlers first when editing UIs (`/stitch-update`), and audit generated screens using Chrome DevTools MCP for overlaps, missing sub-tabs, and scroll-scrub animations.
+
 
 ### 7.5 — Asset generation
 - Never use Antigravity's default (nano banana) image generation for production assets
@@ -375,6 +390,8 @@ Always through public interfaces — index files, API contracts, service layers.
 | Command | Action |
 |---|---|
 | `/start` | Onboard a new project |
+| `/stitch-design` | Map out screens, generate premium specs, and build via Google Stitch |
+| `/stitch-update` | Execute UI-only refactoring via Google Stitch (preserves logic/handlers) |
 | `/module-cycle <name>` | Build one module through the full spiral |
 | `/audit` | Full security audit at major milestones |
 | `/deploy` | Deploy to Vercel, Netlify, or Railway |
@@ -391,6 +408,7 @@ Always through public interfaces — index files, API contracts, service layers.
 | `/triage` or `/validate` | Run the BugHunter 7-Question Gate to validate a potential security finding |
 | `/report` | Draft a formatted security report (H1/Bugcrowd/Client delivery format) |
 
+
 ---
 
 ## 9. Skill Activation Map
@@ -398,10 +416,12 @@ Always through public interfaces — index files, API contracts, service layers.
 | Situation | Activate |
 |---|---|
 | New project | `@.agents/workflows/start.md` |
+| Designing new screens | `@.agents/workflows/stitch-design.md` AND `cinematic-web-design` |
+| Updating existing screens | `@.agents/workflows/stitch-update.md` AND `cinematic-web-design` |
 | Building a module | `@.agents/workflows/module-cycle.md` |
 | Module build — performance reference | `@.agents/skills/web-optimization/SKILL.md` (per-module quick checklist) |
 | Module build complete | `@.agents/skills/code-review/SKILL.md` AND `@.agents/skills/ponytail-review/SKILL.md` |
-| Code review passed | `@.agents/skills/ui-review/SKILL.md` |
+| Code review passed | `@.agents/skills/ui-review/SKILL.md` (with DevTools visual & animation audits) |
 | UI review passed | `@.agents/skills/testing/SKILL.md` |
 | Testing passed, before security | `@.agents/skills/web-optimization/SKILL.md` (per-module performance check) |
 | Testing passed, security verification | `@.agents/skills/security/SKILL.md` AND `claude-bughunter:bb-methodology` |
@@ -410,6 +430,7 @@ Always through public interfaces — index files, API contracts, service layers.
 | Major milestone | `@.agents/workflows/audit.md`, `@.agents/skills/ponytail-audit/SKILL.md`, AND `claude-bughunter:bb-methodology` |
 | Pre-deployment performance audit | `@.agents/skills/web-optimization/SKILL.md` (full audit) |
 | Ready to deploy | `@.agents/workflows/deploy.md` |
+
 
 ---
 

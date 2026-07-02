@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Susilodaya Dhamma School",
+  title: "Susilodaya English Medium Dhamma School",
   description: "Path to wisdom, virtue, and serene learning",
 };
 

@@ -5,13 +5,23 @@
 @tailwind utilities;
 
 :root {
-  --background: #FFF8F0; /* Warm cream */
-  --foreground: #2C1B18; /* Deep Maroon text */
+  --background-warm: #FFF8F0; /* Warm Cream background */
+  --surface-sand: #F0E6D6; /* Light Sand cards */
+  --primary-saffron: #E8A317; /* Saffron primary accent */
+  --secondary-maroon: #6B1D3A; /* Deep Maroon branding */
+  --charcoal: #1C1C1E; /* Deep Charcoal typography */
+  --divider-color: rgba(28, 28, 30, 0.12); /* Thin 1px borders */
+}
+
+/* Globally force sharp corners and remove shadows (Modern Editorial) */
+*, *::before, *::after {
+  border-radius: 0px !important;
+  box-shadow: none !important;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--background-warm);
+  color: var(--charcoal);
   font-family: 'Plus Jakarta Sans', sans-serif;
   overflow-x: hidden;
 }
@@ -20,38 +30,212 @@ h1, h2, h3, h4, .font-serif {
   font-family: 'Instrument Serif', Georgia, serif;
 }
 
-/* Premium textured parchment paper background */
+/* Premium textured parchment paper background dot-grid */
 .bg-parchment {
-  background-color: #FFF8F0;
+  background-color: var(--background-warm);
   background-image: 
-    radial-gradient(#E5DCD0 1.2px, transparent 1.2px), 
-    radial-gradient(#E5DCD0 1.2px, #FFF8F0 1.2px);
+    radial-gradient(rgba(28, 28, 30, 0.08) 1.2px, transparent 1.2px), 
+    radial-gradient(rgba(28, 28, 30, 0.08) 1.2px, var(--background-warm) 1.2px);
   background-size: 48px 48px;
   background-position: 0 0, 24px 24px;
 }
 
-/* Custom fade animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+/* --- OPTION A ANIMATIONS KEYFRAMES --- */
+
+/* 1. Hero Title Reveal: Sequential line slide-up */
+@keyframes lineSlideUp {
+  0% { transform: translateY(105%); }
+  100% { transform: translateY(0); }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Scroll reveal helper classes */
-.reveal-word {
+.animate-line-slide-up {
   display: inline-block;
-  opacity: 0.15;
-  transition: opacity 0.6s ease;
+  overflow: hidden;
+  vertical-align: bottom;
 }
 
-.reveal-word.active {
-  opacity: 1;
+.animate-line-slide-up > span {
+  display: inline-block;
+  animation: lineSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(105%);
 }
 
-/* Clean grid dividers styled like primer.com */
-.grid-divider {
-  border-color: #E6DDD0;
+/* 2. Grid Section & 1px Dividers: Horizontal line-drawing */
+@keyframes drawHorizontalLine {
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
+
+.animate-line-draw {
+  position: relative;
+}
+
+.animate-line-draw::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: var(--charcoal);
+  animation: drawHorizontalLine 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. Saturday Session Timeline: Vertical Thread Drawing & Card Slide */
+@keyframes drawVerticalLine {
+  0% { height: 0%; }
+  100% { height: 100%; }
+}
+
+@keyframes slideInTimelineCard {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.timeline-line {
+  position: relative;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background-color: var(--charcoal);
+  transform: translateX(-50%);
+  height: 0%;
+}
+
+.timeline-line.active::before {
+  animation: drawVerticalLine 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.timeline-card {
+  opacity: 0;
+}
+
+.timeline-card.active {
+  animation: slideInTimelineCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 4. Grid Metrics Cards: Saffron/Maroon Wipe-Fill Hover */
+.btn-wipe {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.btn-wipe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-saffron);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-wipe:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-wipe-maroon::before {
+  background-color: var(--secondary-maroon);
+}
+
+/* 5. Enrollment Stepper: Horizontal slide wipe transitions */
+@keyframes slideWipeIn {
+  0% { transform: translateX(30px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.step-content-active {
+  animation: slideWipeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 6. Late Warning: Accordion dropdown alert */
+@keyframes accordionDropdown {
+  0% { max-height: 0px; opacity: 0; padding-top: 0; padding-bottom: 0; }
+  100% { max-height: 200px; opacity: 1; padding-top: 1rem; padding-bottom: 1rem; }
+}
+
+.late-warning-alert {
+  overflow: hidden;
+  max-height: 0px;
+  opacity: 0;
+}
+
+.late-warning-alert.active {
+  animation: accordionDropdown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 7. Portal Sidebar Transitions: Saffron block indicator slide */
+.sidebar-indicator {
+  transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 8. Table ledger row population stagger */
+@keyframes ledgerRowFade {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.ledger-row {
+  opacity: 0;
+  animation: ledgerRowFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 9. Exams Calendar cell stagger */
+@keyframes cellFadePop {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.calendar-cell {
+  opacity: 0;
+  animation: cellFadePop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 10. Fractal Noise SVG Overlay */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* 4. Liquid Glass Elements */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.25);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg,
+      rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 20%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.4) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
