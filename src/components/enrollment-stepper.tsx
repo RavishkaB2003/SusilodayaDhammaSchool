@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { submitEnrollment } from "@/app/actions/enrollment";
 
 interface EnrollmentStepperProps {
@@ -178,9 +179,17 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
         </div>
       )}
 
-      {/* STEP 1: STUDENT DETAILS */}
-      {step === 1 && (
-        <div key="step-1" className="step-content-active bg-white border border-[#E6DDD0] p-6 md:p-8 rounded-none shadow-none space-y-6">
+      <AnimatePresence mode="wait">
+        {/* STEP 1: STUDENT DETAILS */}
+        {step === 1 && (
+          <motion.div
+            key="step-1"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="step-content-active bg-white border border-[#E6DDD0] p-6 md:p-8 rounded-none shadow-none space-y-6"
+          >
           <div className="border-b border-[#E6DDD0] pb-4">
             <h3 className="text-xl font-normal font-serif text-[#6B1D3A] italic">Step 1: Student Information</h3>
             <p className="text-xs text-[#1C1C1E]/70 mt-1">Please enter the personal details of the student to enroll.</p>
@@ -289,12 +298,19 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
               Continue to Parent Details
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* STEP 2: PARENT DETAILS */}
       {step === 2 && (
-        <div key="step-2" className="step-content-active bg-white border border-[#E6DDD0] p-6 md:p-8 rounded-none shadow-none space-y-6">
+        <motion.div
+          key="step-2"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="step-content-active bg-white border border-[#E6DDD0] p-6 md:p-8 rounded-none shadow-none space-y-6"
+        >
           <div className="border-b border-[#E6DDD0] pb-4">
             <h3 className="text-xl font-normal font-serif text-[#6B1D3A] italic">Step 2: Parent / Guardian Information</h3>
             <p className="text-xs text-[#1C1C1E]/70 mt-1">Please enter parent contact details for office correspondence.</p>
@@ -393,12 +409,19 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
               Continue to Review & Pay
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* STEP 3: REVIEW DETAILS & PAYMENT SELECTOR */}
       {step === 3 && (
-        <div key="step-3" className="step-content-active bg-white border border-[#E6DDD0] p-6 md:p-8 rounded-none shadow-none space-y-6">
+        <motion.div
+          key="step-3"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="step-content-active bg-white border border-[#E6DDD0] p-6 md:p-8 rounded-none shadow-none space-y-6"
+        >
           <div className="border-b border-[#E6DDD0] pb-4">
             <h3 className="text-xl font-normal font-serif text-[#6B1D3A] italic">Step 3: Review & Payment</h3>
             <p className="text-xs text-[#1C1C1E]/70 mt-1">Please confirm details and select your registration payment method.</p>
@@ -529,12 +552,19 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
               )}
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* STEP 4: SUCCESS & VOUCHER PRINT */}
       {step === 4 && result && (
-        <div key="step-4" className="step-content-active space-y-8">
+        <motion.div
+          key="step-4"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="step-content-active space-y-8"
+        >
           {/* Main Success message (Hidden during print) */}
           <div className="bg-white border border-[#E6DDD0] p-6 rounded-none shadow-none text-center space-y-4 print:hidden">
             <div className="w-12 h-12 bg-green-50 text-green-600 border border-green-200 rounded-none flex items-center justify-center mx-auto">
@@ -572,7 +602,14 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
             </div>
 
             {/* Official Header */}
-            <div className="text-center border-b border-[#E6DDD0] pb-6 mb-6">
+            <div className="flex flex-col items-center text-center border-b border-[#E6DDD0] pb-6 mb-6">
+              <div className="relative w-16 h-16 overflow-hidden flex items-center justify-center bg-white border border-[#E6DDD0]/60 p-1 mb-3">
+                <img
+                  src="/assets/logo.png"
+                  alt="Susilodaya Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
               <span className="font-serif text-2xl font-normal italic text-[#6B1D3A]">Susilodaya English Medium Dhamma School</span>
               <p className="text-[10px] font-bold text-[#8B5A2B] uppercase tracking-widest mt-1.5">Pre-Enrollment Voucher</p>
             </div>
@@ -631,8 +668,9 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
+    </AnimatePresence>
     </div>
   );
 }
