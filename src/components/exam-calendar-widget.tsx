@@ -70,7 +70,7 @@ export default function ExamCalendarWidget({ exams }: ExamCalendarWidgetProps) {
     calendarCells.push({
       key: `empty-${i}`,
       element: (
-        <div key={`empty-${i}`} className="h-12 md:h-16 border border-[#E6DDD0] bg-[#FFF8F0]/30 rounded-none"></div>
+        <div key={`empty-${i}`} className="h-12 md:h-16 bg-[#FFF8F0]/30 rounded-none w-full"></div>
       )
     });
   }
@@ -88,12 +88,12 @@ export default function ExamCalendarWidget({ exams }: ExamCalendarWidgetProps) {
         <button
           key={`day-${day}`}
           onClick={() => setSelectedDateStr(cellDateStr)}
-          className={`h-12 md:h-16 border flex flex-col items-center justify-between p-1.5 md:p-2 text-sm font-semibold transition-all relative rounded-none ${
+          className={`h-12 md:h-16 w-full flex flex-col items-center justify-between p-1.5 md:p-2 text-sm font-semibold transition-all relative rounded-none ${
             isSelected
-              ? "border-2 border-[#E8A317] bg-[#6B1D3A] text-white"
+              ? "bg-[#6B1D3A] text-white ring-2 ring-inset ring-[#E8A317]"
               : hasExams
-              ? "border-[#E6DDD0] bg-[#E8A317]/10 text-[#6B1D3A] hover:bg-[#E8A317]/25"
-              : "border-[#E6DDD0] bg-white text-[#1C1C1E] hover:bg-[#FFF8F0]"
+              ? "bg-[#E8A317]/10 text-[#6B1D3A] hover:bg-[#E8A317]/25"
+              : "bg-white text-[#1C1C1E] hover:bg-[#FFF8F0]"
           }`}
         >
           <span className="self-start text-xs md:text-sm">{day}</span>
@@ -117,10 +117,11 @@ export default function ExamCalendarWidget({ exams }: ExamCalendarWidgetProps) {
     calendarCells.push({
       key: `empty-end-${i}`,
       element: (
-        <div key={`empty-end-${i}`} className="h-12 md:h-16 border border-[#E6DDD0] bg-[#FFF8F0]/30 rounded-none"></div>
+        <div key={`empty-end-${i}`} className="h-12 md:h-16 bg-[#FFF8F0]/30 rounded-none w-full"></div>
       )
     });
   }
+
 
   // Grid container Framer Motion variants
   const gridContainerVariants = {
@@ -171,7 +172,7 @@ export default function ExamCalendarWidget({ exams }: ExamCalendarWidgetProps) {
           <div className="flex items-center space-x-2">
             <button
               onClick={handlePrevMonth}
-              className="p-2 rounded-none border border-[#E6DDD0] hover:bg-[#FFF8F0] text-[#6B1D3A] transition-colors"
+              className="p-2 rounded-full border border-[#E6DDD0] hover:bg-[#FFF8F0] text-[#6B1D3A] transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -179,7 +180,7 @@ export default function ExamCalendarWidget({ exams }: ExamCalendarWidgetProps) {
             </button>
             <button
               onClick={handleNextMonth}
-              className="p-2 rounded-none border border-[#E6DDD0] hover:bg-[#FFF8F0] text-[#6B1D3A] transition-colors"
+              className="p-2 rounded-full border border-[#E6DDD0] hover:bg-[#FFF8F0] text-[#6B1D3A] transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -205,7 +206,7 @@ export default function ExamCalendarWidget({ exams }: ExamCalendarWidgetProps) {
             initial="hidden"
             animate="visible"
             key={`${year}-${month}`} // Re-trigger entry animation when changing months
-            className="grid grid-cols-7 mt-2 border border-[#E6DDD0] rounded-none"
+            className="grid grid-cols-7 gap-px bg-[#E6DDD0] border border-[#E6DDD0] mt-2 rounded-none"
           >
             {calendarCells.map((cell) => (
               <motion.div variants={cellVariants} key={cell.key} className="rounded-none">

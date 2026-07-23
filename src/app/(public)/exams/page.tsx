@@ -37,7 +37,7 @@ export default async function ExamsPage() {
         {/* Title Header */}
         <div className="text-center max-w-xl mx-auto space-y-3">
           <ScrollReveal>
-            <span className="text-[#6B1D3A] font-bold text-xs uppercase tracking-widest bg-[#F0E6D6]/50 px-3 py-1.5 rounded-none border border-[#E8A317]/20">
+            <span className="text-[#6B1D3A] font-bold text-xs uppercase tracking-widest bg-[#F0E6D6]/50 px-3 py-1.5 rounded-badge border border-[#E8A317]/20">
               Evaluations & Spot Tests
             </span>
           </ScrollReveal>

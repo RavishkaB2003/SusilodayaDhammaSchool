@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 interface AnimatedHeadingProps {
   text: string;
   className?: string;
+  style?: any;
 }
 
-export default function AnimatedHeading({ text, className = "" }: AnimatedHeadingProps) {
+export default function AnimatedHeading({ text, className = "", style }: AnimatedHeadingProps) {
   // Split title by words
   const words = text.split(" ");
 
@@ -34,6 +35,7 @@ export default function AnimatedHeading({ text, className = "" }: AnimatedHeadin
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      style={style}
     >
       {words.map((word, idx) => (
         <span key={idx} className="inline-block overflow-hidden mr-3 py-1">

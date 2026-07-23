@@ -150,7 +150,7 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
         <div className="flex items-center justify-between mb-8 px-4 print:hidden">
           {[1, 2, 3].map((num) => (
             <div key={num} className="flex items-center flex-1 last:flex-initial">
-              <div className={`w-10 h-10 rounded-none flex items-center justify-center font-bold font-serif border transition-colors ${
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold font-serif border transition-colors ${
                 step === num 
                   ? "bg-[#6B1D3A] text-white border-[#6B1D3A]" 
                   : step > num 
@@ -293,7 +293,7 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
           <div className="flex justify-end pt-4">
             <button
               onClick={handleNext}
-              className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-none border border-[#6B1D3A] transition-all btn-wipe btn-wipe-maroon"
+              className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-cta border border-[#6B1D3A] transition-all btn-wipe btn-wipe-maroon"
             >
               Continue to Parent Details
             </button>
@@ -398,13 +398,13 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
           <div className="flex justify-between pt-4 border-t border-[#E6DDD0]">
             <button
               onClick={handleBack}
-              className="px-6 py-3 border border-[#E6DDD0] hover:text-[#1C1C1E] text-[#1C1C1E] text-[11px] font-bold tracking-widest uppercase rounded-none transition-all btn-wipe"
+              className="px-6 py-3 border border-[#E6DDD0] hover:text-[#1C1C1E] text-[#1C1C1E] text-[11px] font-bold tracking-widest uppercase rounded-cta transition-all btn-wipe"
             >
               Back
             </button>
             <button
               onClick={handleNext}
-              className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-none border border-[#6B1D3A] transition-all btn-wipe btn-wipe-maroon"
+              className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-cta border border-[#6B1D3A] transition-all btn-wipe btn-wipe-maroon"
             >
               Continue to Review & Pay
             </button>
@@ -536,14 +536,14 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
             <button
               onClick={handleBack}
               disabled={isPending}
-              className="px-6 py-3 border border-[#E6DDD0] hover:text-[#1C1C1E] text-[#1C1C1E] text-[11px] font-bold tracking-widest uppercase rounded-none transition-all disabled:opacity-50 btn-wipe"
+              className="px-6 py-3 border border-[#E6DDD0] hover:text-[#1C1C1E] text-[#1C1C1E] text-[11px] font-bold tracking-widest uppercase rounded-cta transition-all disabled:opacity-50 btn-wipe"
             >
               Back
             </button>
             <button
               onClick={handleSubmit}
               disabled={isPending}
-              className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-none border border-[#6B1D3A] transition-all disabled:opacity-50 btn-wipe btn-wipe-maroon"
+              className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-cta border border-[#6B1D3A] transition-all disabled:opacity-50 btn-wipe btn-wipe-maroon"
             >
               {isPending ? (
                 <span>Submitting Request...</span>
@@ -579,7 +579,7 @@ export default function EnrollmentStepper({ feeAmount, isEnrollmentOpen }: Enrol
             <div className="pt-2 flex justify-center">
               <button
                 onClick={triggerPrint}
-                className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-none shadow-none transition-all flex items-center space-x-2 border border-[#6B1D3A] btn-wipe btn-wipe-maroon"
+                className="px-6 py-3 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-widest uppercase rounded-cta shadow-none transition-all flex items-center space-x-2 border border-[#6B1D3A] btn-wipe btn-wipe-maroon"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />

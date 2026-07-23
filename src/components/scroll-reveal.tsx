@@ -7,9 +7,10 @@ interface ScrollRevealProps {
   children: ReactNode;
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
+  className?: string;
 }
 
-export default function ScrollReveal({ children, delay = 0, direction = "up" }: ScrollRevealProps) {
+export default function ScrollReveal({ children, delay = 0, direction = "up", className }: ScrollRevealProps) {
   const directions = {
     up: { y: 40, x: 0 },
     down: { y: -40, x: 0 },
@@ -23,6 +24,7 @@ export default function ScrollReveal({ children, delay = 0, direction = "up" }: 
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      className={className}
     >
       {children}
     </motion.div>

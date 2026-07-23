@@ -16,11 +16,12 @@ export default function Footer() {
           {/* Logo & Vision Block */}
           <div className="space-y-5 col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3">
-              <div className="relative w-10 h-10 overflow-hidden flex items-center justify-center bg-white border border-[#E8A317]/20 p-1">
+              <div className="relative w-12 h-12 overflow-hidden flex items-center justify-center border border-[#E8A317]/20 p-0.5" style={{ width: "48px", height: "48px", minWidth: "48px" }}>
                 <img
                   src="/assets/logo.png"
                   alt="Susilodaya Logo"
                   className="w-full h-full object-contain"
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>
               <div className="flex flex-col">
@@ -61,17 +62,23 @@ export default function Footer() {
             <h4 className="text-xs font-bold tracking-[0.25em] text-[#E8A317] uppercase mb-5">Contact Info</h4>
             <ul className="space-y-4 text-xs text-[#F0E6D6]/70">
               <li className="flex items-start space-x-3">
-                <svg className="w-4.5 h-4.5 text-[#E8A317] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#E8A317] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="leading-relaxed">Susilodaya Viharaya, Temple Road, Colombo, Sri Lanka</span>
+                <span className="leading-relaxed">Susilodaya Viharaya, Temple Junction, Negombo, Sri Lanka</span>
               </li>
               <li className="flex items-center space-x-3">
-                <svg className="w-4.5 h-4.5 text-[#E8A317] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[#E8A317] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span>+94 11 234 5678</span>
+                <span>+94 31 222 3333</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <svg className="w-5 h-5 text-[#E8A317] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>office@susilodaya.lk</span>
               </li>
             </ul>
           </div>

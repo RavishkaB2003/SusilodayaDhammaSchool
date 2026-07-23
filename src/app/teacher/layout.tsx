@@ -19,7 +19,7 @@ export default async function TeacherLayout({
             <img
               src="/assets/logo.png"
               alt="Susilodaya Logo"
-              className="w-full h-full object-contain mix-blend-multiply"
+              className="w-full h-full object-contain"
             />
           </div>
           <div className="flex flex-col">

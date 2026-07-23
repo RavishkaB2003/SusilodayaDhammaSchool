@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -11,11 +11,34 @@ interface NavbarProps {
 export default function Navbar({ user }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    let lastScroll = 0;
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset;
+      setIsScrolled(currentScroll > 50);
+      if (currentScroll > 100) {
+        if (currentScroll > lastScroll) {
+          setScrollDirection("down");
+        } else {
+          setScrollDirection("up");
+        }
+      } else {
+        setScrollDirection("up");
+      }
+      lastScroll = currentScroll;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/#about" },
     { name: "Exams", href: "/exams" },
+    { name: "Events", href: "/events" },
     { name: "Enrollment", href: "/enrollment" },
   ];
 
@@ -25,63 +48,71 @@ export default function Navbar({ user }: NavbarProps) {
   };
 
   return (
-    <nav className="sticky top-0 z-50 liquid-glass border-b border-[#E6DDD0]/60 transition-all duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          
-          {/* Logo Section - framed by clean vertical grid line */}
-          <div className="flex-shrink-0 flex items-center pr-6 border-r border-[#E6DDD0]/80 h-full">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative w-12 h-12 overflow-hidden flex items-center justify-center">
+    <div
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-6xl px-4 transition-all duration-500"
+      style={{
+        left: "50%",
+        transform: `translate(-50%, ${scrollDirection === "down" ? "-150%" : "0"})`,
+      }}
+    >
+      <header
+        className={`glass-nav px-6 sm:px-8 py-3 transition-all duration-500 ${
+          isScrolled ? "scale-[0.98]" : "scale-100"
+        } ${isOpen ? "nav-expanded" : ""}`}
+      >
+        <div className="flex justify-between items-center w-full" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
+          {/* Logo & School Name */}
+          <div className="flex-shrink-0 flex items-center pr-4 border-r border-[#E6DDD0]/80 h-full" style={{ display: "flex", alignItems: "center" }}>
+            <Link href="/" className="flex items-center space-x-3 group" style={{ display: "flex", alignItems: "center" }}>
+              <div className="relative w-12 h-12 overflow-hidden flex items-center justify-center" style={{ width: "48px", height: "48px", minWidth: "48px" }}>
                 <img
                   src="/assets/logo.png"
                   alt="Susilodaya Logo"
-                  className="w-full h-full object-contain mix-blend-multiply"
+                  className="w-full h-full object-contain"
+                  style={{ width: "100%", height: "100%" }}
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-normal tracking-tight text-[#6B1D3A] italic leading-none">
+              <div className="flex flex-col text-left" style={{ display: "flex", flexDirection: "column" }}>
+                <span className="font-serif text-xl font-normal tracking-tight text-[#6B1D3A] italic leading-none group-hover:text-[#E8A317] transition-colors">
                   Susilodaya
                 </span>
-                <span className="text-[7px] sm:text-[8px] font-bold tracking-[0.1em] text-[#8B5A2B] uppercase mt-1 leading-none">
+                <span className="text-[7px] font-bold tracking-[0.15em] text-[#8B5A2B] uppercase mt-1 leading-none">
                   English Medium Dhamma School
                 </span>
               </div>
             </Link>
           </div>
 
-          {/* Desktop Navigation Links - uppercase and wider tracking */}
-          <div className="hidden md:flex items-center space-x-10 h-full px-6">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex gap-8 items-center">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-200 hover:text-[#6B1D3A] ${
-                  isActive(link.href) ? "text-[#6B1D3A]" : "text-[#1C1C1E]/80"
+                className={`text-[11px] font-bold uppercase tracking-[0.15em] transition-colors duration-200 hover:text-[#E8A317] ${
+                  isActive(link.href) ? "text-[#E8A317]" : "text-[#1C1C1E]/80"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-          </div>
+          </nav>
 
-          {/* Action CTA Button - styled as a refined sharp block with diagonal arrow */}
-          <div className="hidden md:flex items-center pl-6 border-l border-[#E6DDD0]/80 h-full">
+          {/* Desktop Action CTA Button */}
+          <div className="hidden md:flex items-center">
             {user ? (
               <Link
                 href={`/${user.user_metadata?.role || "student"}`}
-                className="px-6 py-2.5 bg-[#E8A317] hover:text-[#1C1C1E] text-white text-[11px] font-bold tracking-[0.15em] uppercase rounded-none transition-all duration-300 shadow-none border border-[#E8A317] flex items-center space-x-1.5 btn-wipe"
+                className="bg-[#E8A317] text-white px-5 py-2 text-[11px] font-bold uppercase tracking-[0.15em] rounded-full hover:bg-[#6B1D3A] transition-all duration-300 rounded-cta"
               >
-                <span>Workspace</span>
-                <span className="text-xs">↗</span>
+                Workspace ↗
               </Link>
             ) : (
               <Link
                 href="/login"
-                className="px-6 py-2.5 bg-[#6B1D3A] hover:text-white text-white text-[11px] font-bold tracking-[0.15em] uppercase rounded-none transition-all duration-300 shadow-none border border-[#6B1D3A] flex items-center space-x-1.5 btn-wipe btn-wipe-maroon"
+                className="bg-[#E8A317] text-white px-5 py-2 text-[11px] font-bold uppercase tracking-[0.15em] rounded-full hover:bg-[#6B1D3A] transition-all duration-300 rounded-cta"
               >
-                <span>Portal Login</span>
-                <span className="text-xs">↗</span>
+                Portal Login ↗
               </Link>
             )}
           </div>
@@ -91,49 +122,46 @@ export default function Navbar({ user }: NavbarProps) {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2.5 rounded-none text-[#1C1C1E] hover:text-[#6B1D3A] border border-transparent hover:border-[#E6DDD0] focus:outline-none transition-all"
-              aria-controls="mobile-menu"
+              className="inline-flex items-center justify-center p-2 rounded-full text-[#1C1C1E] hover:text-[#E8A317] focus:outline-none transition-all"
               aria-expanded={isOpen}
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? (
-                <svg className="block h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <svg className="block h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="block h-5.5 w-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <svg className="block h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
                 </svg>
               )}
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer Navigation Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#FFF8F0] border-b border-[#E6DDD0]" id="mobile-menu">
-          <div className="px-4 pt-2 pb-6 space-y-1 sm:px-6">
+        {/* Mobile Menu Drawer (Inside floating glass nav) */}
+        {isOpen && (
+          <div className="md:hidden mt-4 pt-4 border-t border-[#E6DDD0]/60 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-3.5 rounded-none text-xs font-bold tracking-wider uppercase transition-all ${
+                className={`block px-4 py-2.5 text-[11px] font-bold tracking-widest uppercase transition-all rounded-full ${
                   isActive(link.href)
-                    ? "bg-[#E6DDD0]/30 text-[#6B1D3A]"
-                    : "text-[#1C1C1E] hover:bg-[#E6DDD0]/20 hover:text-[#6B1D3A]"
+                    ? "bg-[#6B1D3A]/10 text-[#6B1D3A]"
+                    : "text-[#1C1C1E] hover:bg-[#E6DDD0]/30 hover:text-[#E8A317]"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="pt-6 pb-2 border-t border-[#E6DDD0] px-4">
+            <div className="pt-4 border-t border-[#E6DDD0]/60 px-4">
               {user ? (
                 <Link
                   href={`/${user.user_metadata?.role || "student"}`}
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-5 py-3.5 bg-[#E8A317] text-[#1C1C1E] text-xs font-bold tracking-widest uppercase rounded-none transition-all shadow-none"
+                  className="block w-full text-center px-4 py-2.5 bg-[#E8A317] text-white text-[11px] font-bold tracking-widest uppercase rounded-full hover:bg-[#6B1D3A] transition-all rounded-cta"
                 >
                   Workspace ↗
                 </Link>
@@ -141,15 +169,15 @@ export default function Navbar({ user }: NavbarProps) {
                 <Link
                   href="/login"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-5 py-3.5 bg-[#6B1D3A] text-white text-xs font-bold tracking-widest uppercase rounded-none transition-all shadow-none"
+                  className="block w-full text-center px-4 py-2.5 bg-[#6B1D3A] text-white text-[11px] font-bold tracking-widest uppercase rounded-full hover:bg-[#E8A317] transition-all rounded-cta"
                 >
                   Portal Login ↗
                 </Link>
               )}
             </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )}
+      </header>
+    </div>
   );
 }

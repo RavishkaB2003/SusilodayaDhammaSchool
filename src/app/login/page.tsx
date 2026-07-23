@@ -19,7 +19,7 @@ export default function LoginPage() {
             <img
               src="/assets/logo.png"
               alt="Susilodaya Logo"
-              className="w-full h-full object-contain mix-blend-multiply"
+              className="w-full h-full object-contain"
             />
           </div>
           <h2 className="text-3xl font-normal font-serif text-[#6B1D3A] tracking-tight italic leading-none">Susilodaya</h2>

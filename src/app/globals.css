@@ -19,6 +19,27 @@
   box-shadow: none !important;
 }
 
+/* Exception to allow rounded corners on the navigation pill and its circular buttons */
+.rounded-full,
+.rounded-full *,
+.rounded-badge,
+.rounded-cta {
+  border-radius: 9999px !important;
+}
+
+/* Glass Navigation Pill */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 9999px !important;
+}
+
+.glass-nav.nav-expanded {
+  border-radius: 24px !important;
+}
+
 body {
   background-color: var(--background-warm);
   color: var(--charcoal);
